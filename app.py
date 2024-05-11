@@ -1,14 +1,16 @@
-import time
 import threading
-import numpy as np
-import whisper
-import sounddevice as sd
+import time
 from queue import Queue
-from rich.console import Console
-from langchain.memory import ConversationBufferMemory
+
+import numpy as np
+import sounddevice as sd
+import whisper
 from langchain.chains import ConversationChain
+from langchain.memory import ConversationBufferMemory
 from langchain.prompts import PromptTemplate
 from langchain_community.llms import Ollama
+from rich.console import Console
+
 from tts import TextToSpeechService
 
 console = Console()
@@ -31,7 +33,7 @@ chain = ConversationChain(
     prompt=PROMPT,
     verbose=False,
     memory=ConversationBufferMemory(ai_prefix="Assistant:"),
-    llm=Ollama(),
+    llm=Ollama(model="llama3"),
 )
 
 
